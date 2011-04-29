@@ -1,0 +1,13 @@
+#!/bin/bash
+echo Cleaning...
+rm -rf ./*.o
+
+echo Compiling...
+nasm -f elf -o obj/loader.o src/loader.s
+gcc-3 -o obj/kernel.o -c src/kmain.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs
+
+echo Linking...
+ld -T src/linker.ld -o bin/kernel.bin obj/loader.o obj/kernel.o
+
+echo Done! Building image...
+cat lib/grub-0.97-i386-pc/boot/grub/stage1 lib/grub-0.97-i386-pc/boot/grub/stage2 lib/prepad bin/kernel.bin lib/postpad > bin/floppy.img

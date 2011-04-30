@@ -1,5 +1,5 @@
 global loader
-extern _kmain
+extern kmain
 
 MODULEALIGN 	equ 1<<0
 MEMINFO		equ 1<<1
@@ -21,7 +21,7 @@ loader:
 	push eax
 	push ebx
 
-	call _kmain
+	call kmain
 
 	cli
 hang:

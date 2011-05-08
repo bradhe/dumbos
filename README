@@ -4,3 +4,5 @@ Dependencies:
 
 * Perl must be installed to assist in generating the padding files for the floppy image
 * You must have qemu installed to use scripts/run.sh
+
+Pray.

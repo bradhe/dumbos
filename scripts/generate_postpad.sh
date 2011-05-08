@@ -1,4 +1,5 @@
 #!/bin/bash
+
 kernel_size=`stat -c%s "bin/kernel.bin"`
 stage_one_sec=`stat -c%s "lib/grub-0.97-i386-pc/boot/grub/stage1"`
 stage_two_size=`stat -c%s "lib/grub-0.97-i386-pc/boot/grub/stage2"`

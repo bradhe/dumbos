@@ -1,12 +1,14 @@
 #ifndef _VIDEO_H
 #define _VIDEO_H
 
+#include "types.h"
+
 typedef struct {
-	unsigned char value;
-	unsigned char color; 
+	BYTE value;
+	BYTE color;
 } v_char;
 
-int video_create_buffer(v_char **);
-void video_show_buffer(v_char *, unsigned int);
+BOOL video_create_buffer(v_char **);
+void video_show_buffer(v_char *, COUNTER);
 
 #endif

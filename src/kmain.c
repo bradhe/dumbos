@@ -4,25 +4,20 @@ void kmain(void * mbd, unsigned int magic) {
   UNUSED(mbd);
   UNUSED(magic);
 
-/*  int video_size = 80*26, i;
+  char * str = "Hello, World!";
+
+  int video_size = 80*26, i;
   v_char chars[80*26];
 
-  UNUSED(mbd);
-
-  if(magic != 0x2badb002) {
-    unsigned char * videoram = (unsigned char *) 0xb8000;
-    videoram[0] = 66;
-    videoram[1] = 0x07;
-  }
-
   for(i = 0; i < video_size; i++) {
-    chars[i].value = 0;
-    chars[i].color = 0;
+    chars[i].value = 0x00;
+    chars[i].color = 0x07;
   }
 
-  video_show_buffer(chars, 80*26);*/
-  unsigned char *videoram = (unsigned char *) 0xb8000;
-  videoram[0] = 65; /* character 'A' */
-  videoram[1] = 0x07; /* light grey (7) on black (0). */
+  for(i = 0; i < 13; i++) {
+    chars[i].value = str[i];
+  }
+
+  video_show_buffer(chars, 80*26);
 }
 

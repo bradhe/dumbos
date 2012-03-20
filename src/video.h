@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+#define VIDEO_PRIVATE_PARTS 0xb8000
+
 typedef struct {
 	BYTE value;
 	BYTE color;

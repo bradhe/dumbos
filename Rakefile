@@ -4,8 +4,11 @@ require 'rake'
 BIN_DIR = 'bin'
 OBJ_DIR = 'obj'
 SRC_DIR = 'src'
-CSRC = %w{kmain.c}
+
+# These need to appear in order.
+CSRC = %w{kmain.c video.c}
 SSRC = %w{loader.s}
+
 LD_CONFIG = 'linker.ld'
 BIN_FILE = 'kernel.bin'
 CARGS='-Wall -Wextra -Werror -nostdlib -fno-builtin -nostartfiles -nodefaultlibs'
@@ -39,7 +42,7 @@ def build_file(file)
           end
         end
 
-  cmd(cmd_str)
+  raise RuntimeError, "Failed to build file #{file}." unless cmd(cmd_str)
   obj(file)
 end
 

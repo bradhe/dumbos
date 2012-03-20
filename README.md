@@ -2,7 +2,7 @@
 
 This is a very simple toy OS. It doesn't really do much.
 
-## Building DumbOS
+## Getting Started
 
 ### Toolchain
 

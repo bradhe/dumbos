@@ -19,3 +19,12 @@ Use the following rake commands to make it go. Listed in order of dependency.
 * `rake build` actually builds all source
 * `rake floppy` generates a disk image
 * `rake run` starts QEmu.
+
+### Running
+
+Use `rake run` to build the fucker and boot QEmu up. Then, once in grub, use the following:
+
+```
+kernel 200+18
+boot
+```

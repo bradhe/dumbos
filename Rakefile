@@ -6,8 +6,8 @@ OBJ_DIR = 'obj'
 SRC_DIR = 'src'
 
 # These need to appear in order.
-CSRC = %w{kmain.c video.c}
-SSRC = %w{loader.s}
+CSRC = %w{kmain.c video.c mm.c}
+SSRC = %w{loader.s mem.s}
 
 LD_CONFIG = 'linker.ld'
 BIN_FILE = 'kernel.bin'

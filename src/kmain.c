@@ -22,3 +22,4 @@ void kmain(void * mbd, unsigned int magic) {
 
   video_show_buffer(chars, 80*26);
 }
+

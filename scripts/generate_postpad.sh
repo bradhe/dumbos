@@ -1,8 +1,8 @@
 #!/bin/bash
 
-kernel_size=`stat -c%s "bin/kernel.bin"`
-stage_one_sec=`stat -c%s "lib/grub-0.97-i386-pc/boot/grub/stage1"`
-stage_two_size=`stat -c%s "lib/grub-0.97-i386-pc/boot/grub/stage2"`
+kernel_size=`stat -f %z "bin/kernel.bin"`
+stage_one_sec=`stat -f %z "lib/grub-0.97-i386-pc/boot/grub/stage1"`
+stage_two_size=`stat -f %z "lib/grub-0.97-i386-pc/boot/grub/stage2"`
 export total=`expr 1474560 - $kernel_size - $stage_one_sec - $stage_two_size`
 
 # Make sure we aren't doing something crazy...

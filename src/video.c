@@ -20,3 +20,4 @@ void video_show_buffer(v_char * buf, COUNTER size) {
     videoram += 2;
   }
 }
+

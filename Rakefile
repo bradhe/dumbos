@@ -4,7 +4,7 @@ require 'rake'
 BIN_DIR = 'bin'
 OBJ_DIR = 'obj'
 SRC_DIR = 'src'
-CSRC = %w{kmain.c video.c}
+CSRC = %w{kmain.c}
 SSRC = %w{loader.s}
 LD_CONFIG = 'linker.ld'
 BIN_FILE = 'kernel.bin'
@@ -43,10 +43,6 @@ def build_file(file)
   obj(file)
 end
 
-def generate_padding(obj)
-
-end
-
 task :clean do
   puts "** Cleaning"
   [BIN_DIR, OBJ_DIR].each do |dir|
@@ -65,6 +61,7 @@ task :build => [:clean] do
     build_file(f)
   end
 
+  puts "\n** Linking (#{files.count} OBJ)"
   cmd("#{LD} -T #{src(LD_CONFIG)} -o #{bin(BIN_FILE)} #{files.join(' ')}")
 end
 

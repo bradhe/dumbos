@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ##
 # Configures a vanilla toolchain for making dumbos. This comes from the osdev wiki!
 # http://wiki.osdev.org/Talk:GCC_Cross-Compiler -- Thanks Nokurn

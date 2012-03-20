@@ -1,7 +1,10 @@
 #include "video.h"
 
 void kmain(void * mbd, unsigned int magic) {
-  int video_size = 80*26, i;
+  UNUSED(mbd);
+  UNUSED(magic);
+
+/*  int video_size = 80*26, i;
   v_char chars[80*26];
 
   UNUSED(mbd);
@@ -12,14 +15,14 @@ void kmain(void * mbd, unsigned int magic) {
     videoram[1] = 0x07;
   }
 
-  /*char * boot_loader_name = (char*) ((long*)mbd)[16];*/
-
-  /*unsigned char * videoram = (unsigned char *) 0xb8000;*/
   for(i = 0; i < video_size; i++) {
     chars[i].value = 0;
     chars[i].color = 0;
   }
 
-  video_show_buffer(chars, 80*26);
+  video_show_buffer(chars, 80*26);*/
+  unsigned char *videoram = (unsigned char *) 0xb8000;
+  videoram[0] = 65; /* character 'A' */
+  videoram[1] = 0x07; /* light grey (7) on black (0). */
 }
 

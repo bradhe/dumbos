@@ -43,6 +43,10 @@ def build_file(file)
   obj(file)
 end
 
+def generate_padding(obj)
+
+end
+
 task :clean do
   puts "** Cleaning"
   [BIN_DIR, OBJ_DIR].each do |dir|
@@ -71,7 +75,7 @@ task :floppy => [:build] do
 end
 
 task :run => [:floppy] do
-  puts "\n** Starting qemu"
+  puts "\n** Starting QEmu"
   cmd("qemu -fda bin/floppy.img")
 end
 

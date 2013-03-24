@@ -11,7 +11,7 @@ SSRC = %w{loader.s}
 
 LD_CONFIG = 'linker.ld'
 BIN_FILE = 'kernel.bin'
-CARGS='-Wall -Wextra -Werror -nostdlib -fno-builtin -nostartfiles -nodefaultlibs'
+CARGS='-std=c99 -Wall -Wextra -Werror -nostdlib -fno-builtin -nostartfiles -nodefaultlibs'
 
 CC='/usr/local/cross/bin/i586-elf-gcc'
 LD='/usr/local/cross/bin/i586-elf-ld'
@@ -46,7 +46,7 @@ def build_file(file)
   obj(file)
 end
 
-desc "Clean"
+desc "Clean working files."
 task :clean do
   puts "** Cleaning"
   [BIN_DIR, OBJ_DIR].each do |dir|
@@ -55,7 +55,7 @@ task :clean do
   end
 end
 
-desc "Clean"
+desc "Build object code."
 task :build => [:clean] do
   puts "\n** Building (#{SSRC.count} ASM, #{CSRC.count} C)"
   files = SSRC.map do |f|

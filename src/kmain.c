@@ -1,9 +1,13 @@
-#include "mm.h"
+#include "types.h"
+#include "mem.h"
+#include "multiboot.h"
 
-void kmain(void * mbd, unsigned int magic) {
-  UNUSED(mbd);
+void kmain(multiboot_info_t * mbi, unsigned int magic) {
   UNUSED(magic);
 
-  do_e820();
+  cls();
+  mem_init((multiboot_memory_map_t*)mbi->mmap_addr, mbi->mmap_length);
+
+  while(1) {}
 }
 

@@ -1,18 +1,27 @@
 #include "types.h"
 #include "mem.h"
 
-#define MEM_MAX_PHYS_SEGMENTS   16
+#define MEM_MAX_PHYS_SLABS   16
 
 typedef struct {
   void * base_addr;
   unsigned long size;
   unsigned long in_use;
-} memory_segment_t;
+} memory_slab_t;
 
-static memory_segment_t memory_map[MEM_MAX_PHYS_SEGMENTS];
+typedef struct {
+  unsigned long size;
+  unsigned char type;
+
+  // Points to the next reservation in the current slab. If null, this is the
+  // last reservation in the slab.
+  struct memory_reservation_t * next;
+} memory_reservation_t;
+
+static memory_slab_t memory_map[MEM_MAX_PHYS_SLABS];
 
 void mem_clear_map() {
-  for(int i = 0; i < MEM_MAX_PHYS_SEGMENTS; i++) {
+  for(int i = 0; i < MEM_MAX_PHYS_SLABS; i++) {
     memory_map[i].base_addr = (void *)(unsigned int)0;
     memory_map[i].size = 0;
   }
@@ -42,12 +51,15 @@ void mem_init(multiboot_memory_map_t * mmap, unsigned int mmap_len) {
       memory_map[idx].in_use    = 0;
     }
   }
+
+  // Initialize a free reservation at the front of each slab to indicate it's
+  // ready for bidness.
 }
 
 void * mem_alloc(unsigned long size) {
-  // Find the first available segment and we'll go from there.
-  for(int i = 0; i < MEM_MAX_PHYS_SEGMENTS; i++) {
-    memory_segment_t * seg = &memory_map[i];
+  // Find the first available slab and we'll go from there.
+  for(int i = 0; i < MEM_MAX_PHYS_SLABS; i++) {
+    memory_slab_t * seg = &memory_map[i];
 
     // If this is not allocated...
     if(seg->base_addr == 0) continue;

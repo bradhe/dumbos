@@ -2,6 +2,18 @@
 
 This is a very simple toy OS. It doesn't really do much.
 
+## Tools
+
+### C99 instead of ANSI C
+
+Why? Because it's 2013. That's why.
+
+### GCC 4.6
+
+Why? Because it's the only thing I could figure out to build with...:) I would
+prefer clang, frankly, but building bare C without stdlib in clang for ELF
+instead of Mach on Mac seems/is hard.
+
 ## Getting Started
 
 ### Toolchain
